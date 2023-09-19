@@ -52,11 +52,29 @@ class LinkedList {
         }
         return count;
     }
-    header() {
+    getHead() {
         return this.head; // Simply return the head property of the linked list.
       }
-    tailer() {
+    getTail() {
         return this.tail; // Simply return the tail property
+    }
+
+    getIndex(index) {
+        if (index < 0){
+            return null; 
+        }
+
+        let index = 0;
+        let currentNode = this.head;
+
+        while (currentNode){
+            if (currentIndex === index){
+                return currentNode;// Return the node at the specified index.
+            }
+            currentIndex++ ;
+            currentNode = currentNode.next;
+        }
+        return null;// return null if index is out of bounds
     }
   }
 
