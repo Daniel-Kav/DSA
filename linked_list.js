@@ -42,5 +42,22 @@ class LinkedList {
       }
       return result; // Return an array containing the values of the nodes in the linked list.
     }
+
+    size() {
+        let count = 0;
+        currentNode = this.head;
+        while (currentNode) {
+            count++;
+            currentNode = currentNode.nextNode; // Move to the next node
+        }
+    }
   }
-  
+
+
+// Example usage:
+const linkedList = new LinkedList();
+linkedList.append(1);
+linkedList.append(2);
+linkedList.prepend(0);
+
+console.log(linkedList.toArray()); // Output: [0, 1, 2]
