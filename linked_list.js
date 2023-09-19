@@ -45,12 +45,16 @@ class LinkedList {
 
     size() {
         let count = 0;
-        currentNode = this.head;
+        let currentNode = this.head;
         while (currentNode) {
             count++;
             currentNode = currentNode.nextNode; // Move to the next node
         }
+        return count;
     }
+    header() {
+        return this.head; // Simply return the head property of the linked list.
+      }
   }
 
 
@@ -61,3 +65,5 @@ linkedList.append(2);
 linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
+console.log(linkedList.size());
+console.log(linkedList.header());
