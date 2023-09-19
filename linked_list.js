@@ -55,6 +55,9 @@ class LinkedList {
     header() {
         return this.head; // Simply return the head property of the linked list.
       }
+    tailer() {
+        return this.tail; // Simply return the tail property
+    }
   }
 
 
@@ -66,4 +69,4 @@ linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
 console.log(linkedList.size());
-console.log(linkedList.header());
+console.log(linkedList.tailer());
