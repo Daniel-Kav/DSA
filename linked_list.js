@@ -114,6 +114,20 @@ class LinkedList {
       }
       return false;
     }
+    find(value) {
+
+      let currentNode = this.head;
+      let currentIndex = 0;
+
+      while (currentNode) {
+        if (currentNode.value === value) {
+          return currentIndex;
+        }
+        currentIndex++;
+        currentNode = currentNode.nextNode;
+      }
+      return null;
+    }
   }
 
 
@@ -125,4 +139,4 @@ linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
 console.log(linkedList.size());
-console.log(linkedList.getIndex(1));
+console.log(linkedList.find(2));
