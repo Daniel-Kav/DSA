@@ -64,7 +64,7 @@ class LinkedList {
             return null; 
         }
 
-        let index = 0;
+        let currentIndex = 0;
         let currentNode = this.head;
 
         while (currentNode){
@@ -75,6 +75,27 @@ class LinkedList {
             currentNode = currentNode.next;
         }
         return null;// return null if index is out of bounds
+    }
+    pop() {
+      if(!this.head){
+        return null; // return null if there is no head
+      }
+
+      if(!this.head.nextNode){
+        removedNode = this.head; // remove the head if there is only one node
+        this.head = null;
+        this.tail = null;
+        return removedNode;
+      }
+      let currentNode = this.head;
+      while(currentNode.nextNode && currentNode.nextNode.newNode){
+        currentNode = currentNode.nextNode;
+      }
+      //currentNode will be the second to last node.
+      const removedNode = currentNode.nextNode;
+      currentNode.nextNode = null; // remove THE  last node
+      this.tail = currentNode;
+      return removedNode;
     }
   }
 
@@ -87,4 +108,4 @@ linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
 console.log(linkedList.size());
-console.log(linkedList.tailer());
+console.log(linkedList.getIndex(0));
