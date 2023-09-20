@@ -60,42 +60,59 @@ class LinkedList {
     }
 
     getIndex(index) {
-        if (index < 0){
-            return null; 
-        }
-
-        let currentIndex = 0;
-        let currentNode = this.head;
-
-        while (currentNode){
-            if (currentIndex === index){
-                return currentNode;// Return the node at the specified index.
-            }
-            currentIndex++ ;
-            currentNode = currentNode.next;
-        }
-        return null;// return null if index is out of bounds
-    }
-    pop() {
-      if(!this.head){
-        return null; // return null if there is no head
+      if (index < 0) {
+        return null; // Return null for negative indices.
       }
+  
+      let currentIndex = 0;
+      let currentNode = this.head;
+  
+      while (currentNode) {
+        if (currentIndex === index) {
+          return currentNode; // Return the node at the specified index.
+        }
+        currentIndex++;
+        currentNode = currentNode.nextNode;
+      }
+  
+      return null; // Return null if the index is out of bounds.
+    }
 
-      if(!this.head.nextNode){
-        removedNode = this.head; // remove the head if there is only one node
+    pop() {
+      if (!this.head) {
+        return null; // Return null if the list is empty.
+      }
+  
+      if (!this.head.nextNode) {
+        // If there's only one element in the list, remove it.
+        const removedNode = this.head;
         this.head = null;
         this.tail = null;
         return removedNode;
       }
+  
       let currentNode = this.head;
-      while(currentNode.nextNode && currentNode.nextNode.newNode){
+      while (currentNode.nextNode && currentNode.nextNode.nextNode) {
         currentNode = currentNode.nextNode;
       }
-      //currentNode will be the second to last node.
+  
+      // currentNode will be the second-to-last node.
       const removedNode = currentNode.nextNode;
-      currentNode.nextNode = null; // remove THE  last node
-      this.tail = currentNode;
+      currentNode.nextNode = null; // Remove the last node.
+      this.tail = currentNode; // Update the tail to the new last node.
       return removedNode;
+    }
+
+    contains(value) {
+      let currentNode = this.head;
+
+      while (currentNode) {
+        if(currentNode.value === value){
+          return true;// if the value is found in the list return true
+        }
+        currentNode = currentNode.nextNode;
+      }
+      return false;
     }
   }
 
@@ -108,4 +125,4 @@ linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
 console.log(linkedList.size());
-console.log(linkedList.getIndex(0));
+console.log(linkedList.getIndex(1));
