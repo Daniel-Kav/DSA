@@ -137,8 +137,39 @@ class LinkedList {
         currentNode = currentNode.nextNode;
       }
       return result + 'null';//append null to signify end of list
-    }
   }
+  insertAt(value, index) {
+    if (index < 0) {
+      return false;
+    }
+
+    const newNode = new Node(value);
+    if (index === 0) {
+      newNode.nextNode = this.head;
+      this.head = newNode;
+      if(!this.tail) {
+        this.tail = newNode;
+      }
+      return true;
+    }
+
+    let currentNode = this.head;
+    let currentIndex = 0;
+    while(currentNode) {
+      if(currentIndex === index-1) {
+        newNode.nextNode = currentNode.nextNode;
+        currentNode.nextNode = newNode;
+        if(!newNode.nextNode) {
+          this.tail = newNode;
+        }
+        return true;
+      }
+      currentIndex++;
+      currentNode = currentNode.nextNode;
+    }
+    return false;
+  }
+}
 
 
 // Example usage:
@@ -148,5 +179,5 @@ linkedList.append(2);
 linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
-console.log(linkedList.size());
-console.log(linkedList.toString());
+linkedList.insertAt(4, 1); // Insert value 4 at index 1
+console.log(linkedList.toString()); // Output: (1) -> (4) -> (2) -> (3) -> null
