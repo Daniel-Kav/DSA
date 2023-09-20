@@ -128,6 +128,16 @@ class LinkedList {
       }
       return null;
     }
+
+    toString() {
+      let result = '';
+      let currentNode = this.head;
+      while (currentNode) {
+        result += `(${currentNode.value}) -> `;
+        currentNode = currentNode.nextNode;
+      }
+      return result + 'null';//append null to signify end of list
+    }
   }
 
 
@@ -139,4 +149,4 @@ linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
 console.log(linkedList.size());
-console.log(linkedList.find(2));
+console.log(linkedList.toString());
