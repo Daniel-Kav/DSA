@@ -169,6 +169,38 @@ class LinkedList {
     }
     return false;
   }
+  removeAt(index) {
+    if (index < 0 || !this.head) {
+      return null;
+    }
+    if (index === 0){
+      const removedNode = this.head;
+      this.head = this.head.nextNode;
+      if (!this.head){
+        this.tail = null;
+      }
+      return removedNode;
+    }
+
+    let currentNode = this.head;
+    let currentIndex = 0;
+
+    while (currentNode.nextNode) {
+      if (currentIndex === index - 1) {
+        // Remove the node after currentNode and update nextNode references.
+        const removedNode = currentNode.nextNode;
+        currentNode.nextNode = removedNode.nextNode;
+        if (!currentNode.nextNode) {
+          this.tail = currentNode; // If the last node is removed, update the tail.
+        }
+        return removedNode;
+      }
+      currentNode = currentNode.nextNode;
+      currentIndex++;
+    }
+
+    return null; // Return null if the index is out of bounds.
+  }
 }
 
 
@@ -179,5 +211,5 @@ linkedList.append(2);
 linkedList.prepend(0);
 
 console.log(linkedList.toArray()); // Output: [0, 1, 2]
-linkedList.insertAt(4, 1); // Insert value 4 at index 1
+const removedNode = linkedList.removeAt(1); 
 console.log(linkedList.toString()); // Output: (1) -> (4) -> (2) -> (3) -> null
